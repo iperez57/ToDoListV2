@@ -8,13 +8,15 @@ namespace ToDoListV2
 {
     public class TaskList()
     {
-        private readonly HashSet<Task> tasks = [];
+        private readonly HashSet<TaskToDo> tasks = [];
 
-        public bool AddTask(Task task) => tasks.Add(task);
+        public bool AddTask(TaskToDo task) => tasks.Add(task);
 
-        public bool RemoveTask(Task task) => tasks.Remove(task);
+        public bool RemoveTask(TaskToDo task) => tasks.Remove(task);
 
-        public bool CheckCompleteTask(Task task)
+        public bool ContainsTask(TaskToDo task) => tasks.Contains(task);
+
+        public bool CheckCompleteTask(TaskToDo task)
         {
             return task.IsComplete;
             //if (task.IsComplete)
@@ -27,19 +29,20 @@ namespace ToDoListV2
             //}
         }
 
-        public bool MarkStatusAsComplete(Task task)
+        public bool MarkStatusAsComplete(TaskToDo task)
         {
             //Sometimes it might already be complete? - later
             task.IsComplete = true;
             return true;
         }
 
-        public Task? GetTaskByName(string name)
+        public TaskToDo? GetTaskByName(string name)
         {
+            //Task might not exist - later
             return tasks.FirstOrDefault(task => task.Name == name);
         }
 
-        public Priority GetTaskByPriority(Task task)
+        public Priority GetTaskByPriority(TaskToDo task)
         {
             return task.LevelOfImportance;
         }
