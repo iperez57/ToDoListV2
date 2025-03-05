@@ -15,7 +15,12 @@ namespace ToDoListV2
         public bool RemoveTask(TaskToDo task) => tasks.Remove(task);
 
         public bool ContainsTask(TaskToDo task) => tasks.Contains(task);
-
+        public bool MarkStatusAsComplete(TaskToDo task)
+        {
+            //Sometimes it might already be complete? - later
+            task.IsComplete = true;
+            return true;
+        }
         public bool CheckCompleteTask(TaskToDo task)
         {
             return task.IsComplete;
@@ -27,13 +32,6 @@ namespace ToDoListV2
             //{
             //    return true;
             //}
-        }
-
-        public bool MarkStatusAsComplete(TaskToDo task)
-        {
-            //Sometimes it might already be complete? - later
-            task.IsComplete = true;
-            return true;
         }
 
         public TaskToDo? GetTaskByName(string name)
