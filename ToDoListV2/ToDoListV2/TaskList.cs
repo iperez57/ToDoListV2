@@ -36,11 +36,10 @@ namespace ToDoListV2
 
         public TaskToDo? GetTaskByName(string name)
         {
-            //Task might not exist - later
             return tasks.FirstOrDefault(task => task.Name == name);
         }
 
-        public Priority GetTaskByPriority(TaskToDo task)
+        public Priority GetTaskPriority(TaskToDo task)
         {
             return task.LevelOfImportance;
         }

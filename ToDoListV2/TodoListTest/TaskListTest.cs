@@ -7,7 +7,7 @@ namespace TodoListTest
     public sealed class TaskListTest
     {
         [TestMethod]
-        public void AddATasktoHashSet()
+        public void AddTask_toHashSet_true()
         {
             //Arrange 
             TaskList taskList = new();
@@ -21,7 +21,7 @@ namespace TodoListTest
             Assert.IsTrue(taskList.ContainsTask(task));
         }
         [TestMethod]
-        public void AddMultipleTasktoHashSet()
+        public void AddTask_AddMultipleTaskstoHashSet_true()
         {
             //Arrange 
             TaskList taskList = new();
@@ -36,7 +36,7 @@ namespace TodoListTest
             Assert.IsTrue(taskList.ContainsTask(task2));
         }
         [TestMethod]
-        public void RemoveATaskFromHashset()
+        public void RemoveTask_FromHashset_false()
         {
             //Arrange 
             TaskList taskList = new();
@@ -49,7 +49,7 @@ namespace TodoListTest
             Assert.IsFalse(taskList.ContainsTask(task));
         }
         [TestMethod]
-        public void RemoveMultipleTaskFromHashSet()
+        public void RemoveTask_RemoveMultipleTasksFromHashSet_false()
         {
             //Arrange 
             TaskList taskList = new();
@@ -66,7 +66,7 @@ namespace TodoListTest
             Assert.IsFalse(taskList.ContainsTask(task2));
         }
         [TestMethod]
-        public void MarkTasksAsComplete()
+        public void MarkTasksAsComplete_ChangesTaskFromFalsetoTrue_true()
         {
             //Arrange 
             TaskList taskList = new();
@@ -79,7 +79,7 @@ namespace TodoListTest
             Assert.IsTrue(task.IsComplete);
         }
         [TestMethod]
-        public void CheckTaskIsComplete()
+        public void CheckCompleteTask_SeeIfTaskIsCompleted_true()
         {
             //Arrange 
             TaskList taskList = new();
@@ -91,10 +91,35 @@ namespace TodoListTest
             //Assert
             Assert.IsTrue(taskList.CheckCompleteTask(task));
         }
-        //Make another test to check if the task is not complete
-        //Make another test to check if the task is not complete and complete (multiple)
         [TestMethod]
-        public void FindTaskByName()
+        public void CheckCompleteTask_SeeIfTaskIsNotCompleted_false()
+        {
+            //Arrange 
+            TaskList taskList = new();
+            TaskToDo task = new("Graduate from College", DateTime.Now, Priority.High, false);
+            taskList.AddTask(task);
+            //Act
+
+            //Assert
+            Assert.IsFalse(taskList.CheckCompleteTask(task));
+        }
+        [TestMethod]
+        public void CheckCompleteTask_CheckCompletionStatusofMultipleTasks_false_true()
+        {
+            //Arrange 
+            TaskList taskList = new();
+            TaskToDo task = new("Graduate from College", DateTime.Now, Priority.High, false);
+            TaskToDo task2 = new("Graduate from MSSA", DateTime.Now, Priority.High, false);
+            taskList.AddTask(task);
+            //Act
+            taskList.MarkStatusAsComplete(task);
+
+            //Assert
+            Assert.IsTrue(taskList.CheckCompleteTask(task));
+            Assert.IsFalse(taskList.CheckCompleteTask(task2));
+        }
+        [TestMethod]
+        public void GetTaskByName_SearchForTaskInTaskList_ReturnsSearchedTask()
         {
             //Arrange 
             TaskList taskList = new();
@@ -108,9 +133,18 @@ namespace TodoListTest
             Assert.AreEqual(task, taskList.GetTaskByName("Graduate from College"));
             Assert.AreEqual(task2, taskList.GetTaskByName("Graduate from MSSA"));
         }
-        //Make another test to find a task that does not exist
         [TestMethod]
-        public void FindTaskByPriority()
+        public void GetTaskByName_SearchForTaskThatDoesNotExist_ReturnsNull()
+        {
+            //Arrange 
+            TaskList taskList = new();
+            
+            //Assert
+            Assert.IsNull(taskList.GetTaskByName("Graduate from College"));
+
+        }
+        [TestMethod]
+        public void GetTaskByPriority_GrabsTaskByName_ReturnsPriorityLevelofTask()
         {
             //Arrange 
             TaskList taskList = new();
@@ -121,8 +155,8 @@ namespace TodoListTest
             taskList.AddTask(task2);
 
             //Assert
-            Assert.AreEqual(Priority.High, taskList.GetTaskByPriority(task));
-            Assert.AreEqual(Priority.Low, taskList.GetTaskByPriority(task2));
+            Assert.AreEqual(Priority.High, taskList.GetTaskPriority(task));
+            Assert.AreEqual(Priority.Low, taskList.GetTaskPriority(task2));
         }
     }
 
