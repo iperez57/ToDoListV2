@@ -1,0 +1,31 @@
+﻿@using ToDoListV2;
+
+@page "/"
+@rendermode InteractiveServer
+<PageTitle>TodoListV2</PageTitle>
+
+<h1>TodoListV2</h1>
+
+<div>
+    <input type="text" placeholder="Enter item name" @bind="taskName"/>
+    <button @onclick="AddTask" >Add Task</button>
+</div>
+
+<p> List of Tasks:</p>
+<ul>
+</ul>
+
+
+@code
+{
+    private TaskList toDoList = new TaskList();
+    private string taskName;
+
+    private void AddTask()
+    {
+        TaskToDo task = new TaskToDo(taskName, DateTime.Now);
+        toDoList.AddTask(task);
+        taskName = string.Empty;
+    }
+
+}

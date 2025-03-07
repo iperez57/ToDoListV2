@@ -13,7 +13,7 @@ namespace ToDoListV2
         High
     }
 
-    public class TaskToDo(string name, DateTime dueDate, Priority priority, bool isCompleted = false)
+    public class TaskToDo(string name, DateTime dueDate, Priority priority = Priority.Low, bool isCompleted = false)
     {
         public string Name { get; } = name;
         public DateTime Date { get; } = dueDate;
