@@ -24,24 +24,19 @@ namespace ToDoListV2
         public bool CheckCompleteTask(TaskToDo task)
         {
             return task.IsComplete;
-            //if (task.IsComplete)
-            //{
-            //    return false;
-            //}
-            //else
-            //{
-            //    return true;
-            //}
         }
 
         public TaskToDo? GetTaskByName(string name)
         {
-            return tasks.FirstOrDefault(task => task.Name == name);
+            TaskToDo lookup = new(name, DateTime.Now);
+            return tasks.TryGetValue(lookup, out TaskToDo? searchedTask) ? searchedTask : null;
+
         }
 
         public Priority GetTaskPriority(TaskToDo task)
         {
             return task.LevelOfImportance;
         }
+
     }
 }

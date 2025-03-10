@@ -15,7 +15,7 @@ namespace ToDoListV2
 
     public class TaskToDo(string name, DateTime dueDate, Priority priority = Priority.Low, bool isCompleted = false)
     {
-        public string Name { get; } = name;
+        public string Name { get; set; } = name;
         public DateTime Date { get; } = dueDate;
         public Priority LevelOfImportance { get; } = priority;
         public bool IsComplete { get; set; } = isCompleted;
@@ -24,6 +24,16 @@ namespace ToDoListV2
             return $"Completed: {IsComplete}\nPriority: {LevelOfImportance}\nTask: {Name}\nDue Date: {Date}\n";
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is TaskToDo other && Name == other.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+
+        }
 
     }
 
