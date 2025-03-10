@@ -32,7 +32,6 @@ namespace ToDoListV2
         public override int GetHashCode()
         {
             return Name.GetHashCode();
-
         }
 
     }
