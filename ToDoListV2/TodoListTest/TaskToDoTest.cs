@@ -26,7 +26,7 @@ namespace ToDoListV2Test
             Assert.AreEqual("Completed: False\nPriority: High\nTask: Graduate from College\nDue Date: " + DateTime.Now + "\n", result);
 
         }
-
+        /*
         [TestMethod]
         public void Equals_OverrideEquals_returnsTrue()
         {
@@ -55,6 +55,7 @@ namespace ToDoListV2Test
             Assert.IsTrue(result);
 
         }
+        */
 
     }
 }

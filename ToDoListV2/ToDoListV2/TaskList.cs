@@ -29,7 +29,8 @@ namespace ToDoListV2
         public TaskToDo? GetTaskByName(string name)
         {
             TaskToDo lookup = new(name, DateTime.Now);
-            return tasks.TryGetValue(lookup, out TaskToDo? searchedTask) ? searchedTask : null;
+            tasks.TryGetValue(lookup, out TaskToDo? searchedTask);
+            return searchedTask;
 
         }
 
