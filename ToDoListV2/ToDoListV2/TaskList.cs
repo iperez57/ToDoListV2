@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace ToDoListV2
 {
-    public class TaskList()
+    public class TaskList() : IEnumerable<TaskToDo>
     {
+        public IEnumerator<TaskToDo> GetEnumerator() => taskDictionary.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public int Count => taskDictionary.Count;
+        public bool IsReadOnly => false;
+    
         private readonly HashSet<string> tasks = [];
 
         private readonly Dictionary<string, TaskToDo> taskDictionary = new();

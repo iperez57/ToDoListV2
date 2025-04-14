@@ -15,7 +15,14 @@
 <p> List of Tasks:</p>
 <ul>
     <li>
-        @taskToDo
+        @foreach (TaskToDo task in toDoList)
+        {
+            <div>
+                <span>@task.Name</span>
+                <span>@task.Date.ToString("g")</span>
+                <button @onclick="() => toDoList.RemoveTask(task)">Remove</button>
+            </div>
+        }
     </li>
 
 </ul>
@@ -26,7 +33,6 @@
     public TaskList toDoList = new TaskList();
     private string taskName;
     private TaskToDo taskToDo;
-
     private void AddTask()
     {
         taskToDo = new TaskToDo(taskName, DateTime.Now);
