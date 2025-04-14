@@ -8,13 +8,34 @@ namespace ToDoListV2
 {
     public class TaskList()
     {
-        private readonly HashSet<TaskToDo> tasks = [];
+        private readonly HashSet<string> tasks = [];
 
-        public bool AddTask(TaskToDo task) => tasks.Add(task);
+        private readonly Dictionary<string, TaskToDo> taskDictionary = new();
 
-        public bool RemoveTask(TaskToDo task) => tasks.Remove(task);
+        public Dictionary<string, TaskToDo> publicTaskDictionary => taskDictionary;
 
-        public bool ContainsTask(TaskToDo task) => tasks.Contains(task);
+        public bool AddTask(TaskToDo task)
+        {
+
+            if (tasks.Add(task.Name))
+            {
+                taskDictionary.Add(task.Name, task);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public bool RemoveTask(TaskToDo task) {
+            tasks.Remove(task.Name);
+            taskDictionary.Remove(task.Name);
+            return true;
+        }
+
+        public bool ContainsTask(TaskToDo task) => taskDictionary.ContainsKey(task.Name);
         public bool MarkStatusAsComplete(TaskToDo task)
         {
             //Sometimes it might already be complete? - later
@@ -28,8 +49,7 @@ namespace ToDoListV2
 
         public TaskToDo? GetTaskByName(string name)
         {
-            TaskToDo lookup = new(name, DateTime.Now);
-            tasks.TryGetValue(lookup, out TaskToDo? searchedTask);
+            taskDictionary.TryGetValue(name, out TaskToDo? searchedTask);
             return searchedTask;
 
         }

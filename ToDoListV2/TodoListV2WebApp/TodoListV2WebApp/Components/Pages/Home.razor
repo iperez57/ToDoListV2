@@ -11,21 +11,27 @@
     <button @onclick="AddTask" >Add Task</button>
 </div>
 
+
 <p> List of Tasks:</p>
 <ul>
+    <li>
+        @taskToDo
+    </li>
+
 </ul>
 
 
 @code
 {
-    private TaskList toDoList = new TaskList();
+    public TaskList toDoList = new TaskList();
     private string taskName;
+    private TaskToDo taskToDo;
 
     private void AddTask()
     {
-        TaskToDo task = new TaskToDo(taskName, DateTime.Now);
-        toDoList.AddTask(task);
-        taskName = string.Empty;
+        taskToDo = new TaskToDo(taskName, DateTime.Now);
+        toDoList.AddTask(taskToDo);
+        taskName = string.Empty; // Clear the input field after adding the task
     }
 
 }

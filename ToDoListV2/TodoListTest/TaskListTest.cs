@@ -20,6 +20,21 @@ namespace TodoListTest
             //Assert
             Assert.IsTrue(taskList.ContainsTask(task));
         }
+
+        [TestMethod]
+        public void AddTask_AddDuplicateTaskToHashSet_false()
+        {
+            //Arrange 
+            TaskList taskList = new();
+            TaskToDo task = new("Graduate from College", DateTime.Now, Priority.High, false);
+            TaskToDo task2 = new("Graduate from College", DateTime.Now, Priority.Low, false);
+            //Act
+            taskList.AddTask(task);
+            bool result = taskList.AddTask(task2);
+            //Assert
+            Assert.IsFalse(result);
+        }
+
         [TestMethod]
         public void AddTask_AddMultipleTaskstoHashSet_true()
         {
