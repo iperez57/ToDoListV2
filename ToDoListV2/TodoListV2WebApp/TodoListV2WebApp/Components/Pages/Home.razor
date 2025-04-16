@@ -9,6 +9,9 @@
 <div>
     <input type="text" placeholder="Enter item name" @bind="taskName"/>
     <button @onclick="AddTask" >Add Task</button>
+
+    <input type="text" placeholder="Search For Task" @bind="taskLookup" />
+    <button @onclick="SearchTaskName">Search Task</button>
 </div>
 
 
@@ -17,11 +20,19 @@
     <div>
         @foreach (TaskToDo task in toDoList)
         {
+            @if (taskLookup == task.Name)
+            {
+                <div style="background-color: lightblue; border: 1px solid black; margin: 5px; padding: 5px;">
+                    <span>@task.Name</span>
+                    <span>@task.Date.ToString("g")</span>
+                    <span>@task.LevelOfImportance</span>
+                    <button @onclick="() => toDoList.RemoveTask(task)">Remove</button>
+                </div>
+            }
             <div>
                 <span>@task.Name</span>
                 <span>@task.Date.ToString("g")</span>
                 <span>@task.LevelOfImportance</span>
-                <span>@task.IsComplete</span>
                 <button @onclick="() => toDoList.RemoveTask(task)">Remove</button>
             </div>
         }
@@ -33,6 +44,7 @@
 {
     public TaskList toDoList = new TaskList();
     private string taskName;
+    private string taskLookup;
     private TaskToDo taskToDo;
     private void AddTask()
     {
@@ -40,5 +52,12 @@
         toDoList.AddTask(taskToDo);
         taskName = string.Empty;
     }
+    private void SearchTaskName()
+    {
+        toDoList.GetTaskByName(taskLookup);
+        taskLookup = string.Empty;
+    }
+
+
 
 }

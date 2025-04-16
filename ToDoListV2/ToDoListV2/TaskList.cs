@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,18 @@ namespace ToDoListV2
         {
             return task.LevelOfImportance;
         }
-
+        public TaskToDo? EditTask(TaskToDo task, string newName, DateTime newDate, Priority newPriority)
+        {
+            if (taskDictionary.ContainsKey(task.Name))
+            {
+                taskDictionary.Remove(task.Name);
+                taskDictionary.Add(newName, new TaskToDo(newName, newDate, newPriority));
+                return taskDictionary[newName];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
