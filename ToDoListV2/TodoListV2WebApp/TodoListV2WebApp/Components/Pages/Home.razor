@@ -20,6 +20,8 @@
             <div>
                 <span>@task.Name</span>
                 <span>@task.Date.ToString("g")</span>
+                <span>@task.LevelOfImportance</span>
+                <span>@task.IsComplete</span>
                 <button @onclick="() => toDoList.RemoveTask(task)">Remove</button>
             </div>
         }
