@@ -13,15 +13,15 @@ namespace ToDoListV2
         High
     }
 
-    public class TaskToDo(string name, DateTime dueDate, Priority priority = Priority.Low, bool isCompleted = false)
+    public class TaskToDo(string name, DateTime creationDate, Priority priority = Priority.Low, bool isCompleted = false)
     {
         public string Name { get; set; } = name;
-        public DateTime Date { get; } = dueDate;
+        public DateTime Date { get; } = creationDate;
         public Priority LevelOfImportance { get; } = priority;
         public bool IsComplete { get; set; } = isCompleted;
         public override string ToString()
         {
-            return $"Completed: {IsComplete}\nPriority: {LevelOfImportance}\nTask: {Name}\nDue Date: {Date}\n";
+            return $"Completed: {IsComplete}\nPriority: {LevelOfImportance}\nTask: {Name}\nCreation Date: {Date}\n";
         }
 
         public override bool Equals(object? obj)
@@ -33,7 +33,6 @@ namespace ToDoListV2
         {
             return Name.GetHashCode();
         }
-
     }
 
 }

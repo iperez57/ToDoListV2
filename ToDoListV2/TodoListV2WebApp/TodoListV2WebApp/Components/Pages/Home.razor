@@ -14,7 +14,7 @@
 
 <p> List of Tasks:</p>
 <ul>
-    <li>
+    <div>
         @foreach (TaskToDo task in toDoList)
         {
             <div>
@@ -23,10 +23,9 @@
                 <button @onclick="() => toDoList.RemoveTask(task)">Remove</button>
             </div>
         }
-    </li>
+    </div>
 
 </ul>
-
 
 @code
 {
@@ -37,7 +36,7 @@
     {
         taskToDo = new TaskToDo(taskName, DateTime.Now);
         toDoList.AddTask(taskToDo);
-        taskName = string.Empty; // Clear the input field after adding the task
+        taskName = string.Empty;
     }
 
 }
