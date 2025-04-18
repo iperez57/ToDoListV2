@@ -65,18 +65,14 @@ namespace ToDoListV2
         {
             return task.LevelOfImportance;
         }
-        public TaskToDo? EditTask(TaskToDo task, string newName, DateTime newDate, Priority newPriority)
+
+        public TaskList CopyToDoList(TaskList taskList)
         {
-            if (taskDictionary.ContainsKey(task.Name))
+            foreach (var task in taskList.taskDictionary.Values)
             {
-                taskDictionary.Remove(task.Name);
-                taskDictionary.Add(newName, new TaskToDo(newName, newDate, newPriority));
-                return taskDictionary[newName];
+                AddTask(task);
             }
-            else
-            {
-                return null;
-            }
+            return this;
         }
     }
 }
