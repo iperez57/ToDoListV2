@@ -66,13 +66,5 @@ namespace ToDoListV2
             return task.LevelOfImportance;
         }
 
-        public TaskList CopyToDoList(TaskList taskList)
-        {
-            foreach (var task in taskList.taskDictionary.Values)
-            {
-                AddTask(task);
-            }
-            return this;
-        }
     }
 }
