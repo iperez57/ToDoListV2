@@ -66,5 +66,17 @@ namespace ToDoListV2
             return task.LevelOfImportance;
         }
 
+        public void EditTask(TaskToDo task, string newName)
+        {
+            if (taskDictionary.ContainsKey(task.Name))
+            {
+                tasks.Remove(task.Name);
+                taskDictionary.Remove(task.Name);
+                task.Name = newName;
+                tasks.Add(newName);
+                taskDictionary.Add(newName, task);
+            }
+        }
+
     }
 }
